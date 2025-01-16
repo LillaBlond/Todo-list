@@ -1,0 +1,23 @@
+
+#filter button{
+    background-color: var(--lightBlue);
+    color: var(--slategrey);
+    font-weight: bold;
+    padding: 10px;
+    font-size: 14px;
+}
+
+#status{
+    display: inline;
+    padding: 10px;
+    border-radius: 5px;
+    background-image: linear-gradient(90deg, var(--slategrey) 40%, var(--lightBlue) 1%);
+    font-weight: bold;
+    color: white;
+}
+
+#filter{
+    display: flex;
+    gap: 10px;
+  
+}
