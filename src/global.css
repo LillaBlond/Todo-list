@@ -1,0 +1,10 @@
+
+:root{
+    --background: linear-gradient(#A9C2C7, white);
+    --slategrey: #4F656D;
+    --boxShadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+h1{
+    text-shadow: var(--boxShadow);
+}
