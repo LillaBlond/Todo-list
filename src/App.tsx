@@ -6,16 +6,20 @@ import { FilterTaskList } from "./components/FilterTaskList";
 import { useState } from "react";
 
 function App() {
-  const [taskList, setTaskList] = useState(["Do laundry", "Work on TodoList", "Cook food", "Go for a run", "clean the flat"]);
+  const everyDayItems = ["Wake up", "Make Coffe", "Open eyes", "Start day"];
+  const savedTaskList:string[] = JSON.parse(localStorage.getItem("savedTaskList")) || everyDayItems;
+  const [tempTaskList, setTempTaskList] = useState(savedTaskList);
 
   function addTask(task: string){
-      setTaskList([...taskList, task]);
-  }
+      setTempTaskList([...tempTaskList, task]);
+    }
+
+    localStorage.setItem("savedTaskList", JSON.stringify(tempTaskList));
 
   return <>
   <h1>Todo List</h1>
     <AddTask addTask={addTask}></AddTask>
-    <ShowTaskList list={taskList}></ShowTaskList>
+    <ShowTaskList taskList={tempTaskList}></ShowTaskList>
     <FilterTaskList></FilterTaskList>
     </>;
 }
