@@ -1,5 +1,6 @@
 import "../css/Global.css";
 import "../css/ShowTaskList.css";
+import { TaskItem } from "./TaskItem";
 
 
 interface IShowTaskListProps{
@@ -10,8 +11,10 @@ interface IShowTaskListProps{
 export function ShowTaskList({taskList}: IShowTaskListProps){
 
     function showTaskItems(){
-        const listOfTasks = taskList.map((task: string) => {
-            return <li>{task}</li>
+        const listOfTasks = taskList.map((task, i) => {
+           
+            return <TaskItem id={i} content={task}></TaskItem>
+           /*  <li>{task}</li> */
         });
 
         return listOfTasks;

@@ -3,7 +3,7 @@
 }
 
 #addTask-wrapper input{
-    min-width: 300px;
+    min-width: 400px;
     background-color: white;
     color: var(--charcoal);
     padding: 15px;

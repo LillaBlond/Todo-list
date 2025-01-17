@@ -4,6 +4,7 @@ import { AddTask } from "./components/AddTask";
 import { ShowTaskList } from "./components/ShowTaskList";
 import { FilterTaskList } from "./components/FilterTaskList";
 import { useState } from "react";
+import { Task } from "./components/TaskItem";
 
 function App() {
   const everyDayItems = ["Wake up", "Make Coffe", "Open eyes", "Start day"];
