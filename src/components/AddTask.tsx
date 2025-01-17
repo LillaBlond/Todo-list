@@ -1,5 +1,5 @@
-import "../components/AddTask.css";
-import "../global.css/";
+import "../css/AddTask.css";
+import "../css/Global.css/";
 
 export function AddTask(){
 

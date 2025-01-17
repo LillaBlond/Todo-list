@@ -1,0 +1,42 @@
+
+#filter button,
+#filter button:focus
+{
+    background-color: var(--lightBlue);
+    color: var(--slategrey);
+    font-weight: bold;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+#filter button:hover
+{
+    background-color: var(--mediumBlue);
+    outline: none;
+    border: none;
+}
+#filter button:active{
+    background-color: var(--darkBlue);
+    color: var(--lightBlue);
+
+}
+
+#progress{
+    padding: 10px;
+    font-size: 16px;
+    width: 10%;
+    color: var(--slategrey);
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+}
+
+#filter{
+    display: flex;
+    gap: 10px;
+}

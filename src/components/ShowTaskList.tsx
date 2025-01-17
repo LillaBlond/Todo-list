@@ -1,5 +1,5 @@
-import "../global.css";
-import "../CSS/ShowTaskList.css";
+import "../css/Global.css";
+import "../css/ShowTaskList.css";
 
 
 export function ShowTaskList(){
