@@ -7,10 +7,14 @@ import { useState } from "react";
 
 function App() {
   const [taskList, setTaskList] = useState(["Do laundry", "Work on TodoList", "Cook food", "Go for a run", "clean the flat"]);
-  
+
+  function addTask(task: string){
+      setTaskList([...taskList, task]);
+  }
+
   return <>
   <h1>Todo List</h1>
-    <AddTask></AddTask>
+    <AddTask addTask={addTask}></AddTask>
     <ShowTaskList list={taskList}></ShowTaskList>
     <FilterTaskList></FilterTaskList>
     </>;

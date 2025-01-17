@@ -5,6 +5,7 @@
 #addTask-wrapper input{
     min-width: 300px;
     background-color: white;
+    color: var(--charcoal);
     padding: 15px;
     border-radius: 10px 0 0 10px;
     border: none;
