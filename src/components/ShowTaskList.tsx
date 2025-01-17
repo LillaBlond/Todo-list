@@ -1,22 +1,28 @@
 import "../css/Global.css";
 import "../css/ShowTaskList.css";
+import { TaskItem } from "./TaskItem";
 
 
-export function ShowTaskList(){
+interface IShowTaskListProps{
+    taskList: string[];
+}
+
+
+export function ShowTaskList({taskList}: IShowTaskListProps){
+
+    function showTaskItems(){
+        const listOfTasks = taskList.map((task, i) => {
+           
+            return <TaskItem id={i} content={task}></TaskItem>
+           /*  <li>{task}</li> */
+        });
+
+        return listOfTasks;
+    }
 
     return <section id="task-list">
         <ul>
-            <li>Task 1</li>
-            <li>Task 2</li>
-            <li>Task 3</li>
-            <li>Task 4</li>
-            <li>Task 5</li>
-            <li>Task 6</li>
-            <li>Task 7</li>
-            <li>Task 8</li>
-            <li>Task 9</li>
-           
-
+            {showTaskItems()}
         </ul>
     </section>
 }

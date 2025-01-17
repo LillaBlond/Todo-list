@@ -1,18 +1,22 @@
 
 
 #task-list{
+    width: 100%;
     max-height: calc(100vh - 400px);
     margin: 20px 0;
     color: var(--slategrey);
     overflow-x: auto;
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color: rgba(0, 0, 0, 0.10);
     box-shadow: inset 0 0 10px 6px rgba(255, 255, 255, 0.20);
     border-radius: 5px;
 }
 
+/* #task-list ul{
+    width: 90%;
+} */
+
 #task-list li{
-    border: 1px solid black;
     list-style: none;
     margin: 10px 0;
     text-align: left;

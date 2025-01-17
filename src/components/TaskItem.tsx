@@ -1,0 +1,28 @@
+import "../css/Global.css";
+import "../css/TaskItem.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan, faPen, faFire} from "@fortawesome/free-solid-svg-icons"
+import { useState } from "react";
+
+interface ITaskItemProps{
+    id: number;
+    content: string;
+}
+
+
+export function TaskItem({id, content}: ITaskItemProps){
+
+    const [isDone, setIsDone] = useState<boolean>(false);
+
+    function changeStatus(){
+        isDone ? setIsDone(false) : setIsDone(true);
+    }
+
+    return <li className={"taskItem" + " " +(isDone ? "done" : "")}>
+        <input type="checkbox" name="checkbox" onClick={changeStatus}/>
+        <input type="text" className={(isDone ? "done" : "")} value={content} disabled/>
+        <FontAwesomeIcon className="icon" icon={faFire} />
+        <FontAwesomeIcon className="icon" icon={faTrashCan} />
+        <FontAwesomeIcon className="icon" icon={faPen} />
+    </li>
+}

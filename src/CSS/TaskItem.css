@@ -1,0 +1,93 @@
+
+
+
+.taskItem{
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--lightGrey);
+    border-radius: 10px;
+    gap: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.taskItem .icon{
+    color: grey;
+    font-size: 20px;
+}
+
+.taskItem .icon:hover{
+    cursor: pointer;
+    color: var(--mediumBlue);
+    font-size: 20px;
+}
+
+.taskItem .icon:active{
+    cursor: pointer;
+    color: var(--darkBlue);
+    font-size: 20px;
+}
+
+
+.taskItem input[type=text]{
+  width: 100%;
+  background-color: white;
+  color: var(--slategrey);
+  font-size: 16px;
+  padding: 5px;
+}
+
+.taskItem input[type=text].done{
+  text-decoration: line-through;
+  font-weight: bold;
+}
+.taskItem input[type=checkbox]{
+    margin: 5px;
+    width: 10px;
+    height: 10px;
+}
+.taskItem input[type=checkbox]{
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For older Firefox */
+    appearance: none;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    border: 1px solid grey;
+    border-radius: 3px;
+    margin-right: 5px;
+    box-shadow: 0 2px 4px 0 inset rgba(0,0,0,0.25); 
+    background-color: var(--soft-white);
+  }
+
+  .taskItem input[type="checkbox"]:hover {
+    background-color: var(--grey-grad2);
+  }
+
+  /* Checked state */
+  .taskItem input[type="checkbox"]:checked {
+    background-color: white;
+  }
+  
+  .taskItem input[type="checkbox"]:checked:hover {
+    background-color: var(--lightBlue);
+  }
+
+  .taskItem  input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0px;
+    width: 10px;
+    height: 20px;
+    border: solid var(--darkBlue);
+    border-width: 0 4px 4px 0;
+    transform: rotate(35deg);
+  }
+
+  .taskItem.done{
+    opacity: 0.4;
+  }
