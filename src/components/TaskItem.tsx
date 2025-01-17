@@ -17,14 +17,12 @@ export function TaskItem({id, content}: ITaskItemProps){
     function changeStatus(){
         isDone ? setIsDone(false) : setIsDone(true);
     }
-    console.log(isDone);
 
-    return <li className="taskItem">
+    return <li className={"taskItem" + " " +(isDone ? "done" : "")}>
         <input type="checkbox" name="checkbox" onClick={changeStatus}/>
-        <input type="text" value={content} disabled/>
+        <input type="text" className={(isDone ? "done" : "")} value={content} disabled/>
         <FontAwesomeIcon className="icon" icon={faFire} />
         <FontAwesomeIcon className="icon" icon={faTrashCan} />
         <FontAwesomeIcon className="icon" icon={faPen} />
-        
     </li>
 }

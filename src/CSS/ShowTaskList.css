@@ -12,8 +12,11 @@
     border-radius: 5px;
 }
 
+/* #task-list ul{
+    width: 90%;
+} */
+
 #task-list li{
-    border: 1px solid black;
     list-style: none;
     margin: 10px 0;
     text-align: left;

@@ -2,7 +2,7 @@
 
 
 .taskItem{
-    width: 100%;
+    width: 95%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,7 +14,7 @@
 }
 
 .taskItem .icon{
-    color: var(--slategrey);
+    color: grey;
     font-size: 20px;
 }
 
@@ -32,11 +32,17 @@
 
 
 .taskItem input[type=text]{
-    width: 100%;
-    background-color: white;
-    padding: 5px;
+  width: 100%;
+  background-color: white;
+  color: var(--slategrey);
+  font-size: 16px;
+  padding: 5px;
 }
 
+.taskItem input[type=text].done{
+  text-decoration: line-through;
+  font-weight: bold;
+}
 .taskItem input[type=checkbox]{
     margin: 5px;
     width: 10px;
@@ -83,5 +89,5 @@
   }
 
   .taskItem.done{
-    opacity: 0.8;
+    opacity: 0.4;
   }
