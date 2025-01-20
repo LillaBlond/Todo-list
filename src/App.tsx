@@ -16,9 +16,11 @@ function App() {
     }
 
   function getId(){
-        const idArray = tempTaskList.map((task) => task.id)
-        const findLastID = Math.max(...idArray);
-        return findLastID + 1;
+
+          const idArray = tempTaskList.map((task) => task.id)
+          const lastTaskId = (idArray.length !== 0) ? Math.max(...idArray) : 0;
+
+        return lastTaskId + 1;
   }
 
     function removeTask(id: number){
