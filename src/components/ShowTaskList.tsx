@@ -1,19 +1,20 @@
 import "../css/Global.css";
 import "../css/ShowTaskList.css";
+import { Task } from "../models/task";
 import { TaskItem } from "./TaskItem";
 
 
 interface IShowTaskListProps{
-    taskList: string[];
+    taskList: Task[];
 }
 
 
 export function ShowTaskList({taskList}: IShowTaskListProps){
 
     function showTaskItems(){
-        const listOfTasks = taskList.map((task, i) => {
+        const listOfTasks = taskList.map((task) => {
            
-            return <TaskItem id={i} content={task}></TaskItem>
+            return <TaskItem key={task.id} id={task.id} content={task.task}></TaskItem>
            /*  <li>{task}</li> */
         });
 

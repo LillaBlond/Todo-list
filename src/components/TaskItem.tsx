@@ -11,14 +11,13 @@ interface ITaskItemProps{
 
 
 export function TaskItem({id, content}: ITaskItemProps){
-
     const [isDone, setIsDone] = useState<boolean>(false);
 
     function changeStatus(){
         isDone ? setIsDone(false) : setIsDone(true);
     }
 
-    return <li className={"taskItem" + " " +(isDone ? "done" : "")}>
+    return <li key={id} className={"taskItem" + " " +(isDone ? "done" : "")}>
         <input type="checkbox" name="checkbox" onClick={changeStatus}/>
         <input type="text" className={(isDone ? "done" : "")} value={content} disabled/>
         <FontAwesomeIcon className="icon" icon={faFire} />
