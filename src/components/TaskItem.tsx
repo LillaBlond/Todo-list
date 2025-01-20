@@ -22,7 +22,6 @@ export function TaskItem({id, content, status, removeItem, updateTask}: ITaskIte
     function setProgressStatus(){
         const tempStatus = isDone ? false : true;
         setIsDone(tempStatus)
-        console.log(tempStatus);
         updateTask(id, inputValue, tempStatus);
     }
 

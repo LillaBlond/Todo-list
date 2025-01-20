@@ -1,17 +1,25 @@
 import "../css/Global.css"
 import "../css/FilterTaskList.css";
+import { Task } from "../models/Task";
 
 interface IFilterTaskListProps {
-    filterList: (show: string) => void;
+    addFilter: (filter: string) => void;
+    taskList: Task[];
 }
 
-export function FilterTaskList({filterList}: IFilterTaskListProps){
+export function FilterTaskList({addFilter, taskList}: IFilterTaskListProps){
+
+    const data ={
+        total: taskList.length,
+        completed: taskList.filter((task)=> task.isDone).length
+
+    }
 
     return <section id="filter">
-        <button type="button" onClick={() => filterList("completed")}>Completed</button>
-        <button type="button" onClick={() => filterList("unfinished")}>Unfinished</button>
-        <button type="button" onClick={() => filterList("all")}>All</button>
-        <div id="progress">8/20 completed
+        <button type="button" onClick={() => addFilter("completed")}>Completed</button>
+        <button type="button" onClick={() => addFilter("unfinished")}>Unfinished</button>
+        <button type="button" onClick={() => addFilter("all")}>All</button>
+        <div id="progress">{data.completed + "/" + data.total + " completed"}
         </div>
     </section>
 }
