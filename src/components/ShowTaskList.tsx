@@ -1,19 +1,21 @@
 import "../css/Global.css";
 import "../css/ShowTaskList.css";
+import { Task } from "../models/task";
 import { TaskItem } from "./TaskItem";
 
 
 interface IShowTaskListProps{
-    taskList: string[];
+    taskList: Task[];
+    removeItem: (id: number) => void;
 }
 
 
-export function ShowTaskList({taskList}: IShowTaskListProps){
+export function ShowTaskList({taskList, removeItem}: IShowTaskListProps){
 
     function showTaskItems(){
-        const listOfTasks = taskList.map((task, i) => {
+        const listOfTasks = taskList.map((task) => {
            
-            return <TaskItem id={i} content={task}></TaskItem>
+            return <TaskItem key={task.id} id={task.id} content={task.task} removeItem={removeItem}></TaskItem>
            /*  <li>{task}</li> */
         });
 
