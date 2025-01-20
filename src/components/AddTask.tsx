@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import "../css/AddTask.css";
 import "../css/Global.css";
 
@@ -13,12 +13,15 @@ export function AddTask(props: IAddTaskProps){
             setInputValue(e.target.value);
     }
 
-    function clearInputValue(){
+
+    function handleSubmit(e: FormEvent){
+        e.preventDefault();
+        props.addTask(inputValue);
         setInputValue("");
     }
 
-    return <section id="addTask-wrapper">
+    return <form id="addTask-wrapper">
         <input type="text" name="addTask" onChange={handleChange} value={inputValue} placeholder="What needs to be done?"/>
-        <button type="button" onClick={()=>{props.addTask(inputValue); clearInputValue()}}>Add</button>
-    </section>
+        <button type="submit" onClick={handleSubmit}>Add</button>
+    </form>
 }

@@ -1,23 +1,42 @@
 import "../css/Global.css";
 import "../css/ShowTaskList.css";
-import { Task } from "../models/task";
+import { Task } from "../models/Task";
 import { TaskItem } from "./TaskItem";
 
 
 interface IShowTaskListProps{
     taskList: Task[];
+    filter: string;
     removeItem: (id: number) => void;
+    updateTask: (id: number, value: string, status: boolean) => void;
 }
 
 
-export function ShowTaskList({taskList, removeItem}: IShowTaskListProps){
+export function ShowTaskList({taskList, filter, removeItem, updateTask}: IShowTaskListProps){
 
     function showTaskItems(){
-        const listOfTasks = taskList.map((task) => {
-           
-            return <TaskItem key={task.id} id={task.id} content={task.task} removeItem={removeItem}></TaskItem>
-           /*  <li>{task}</li> */
-        });
+
+        let filteredList: Task[];
+         
+        if(filter === "completed") {
+                filteredList = taskList.filter((task) => task.isDone);
+        } else if(filter === "unfinished"){
+            filteredList =  taskList.filter((task) => !task.isDone);
+        } else{
+                filteredList =  taskList;
+        }
+
+        const listOfTasks = filteredList.map((task) => <TaskItem key={task.id} id={task.id} content={task.task} status={task.isDone} removeItem={removeItem} updateTask={updateTask}></TaskItem>
+        );
+        console.log(listOfTasks);
+
+        if(listOfTasks.length === 0){
+            switch(filter){
+                case "completed": return <h4>You haven't completed any tasks yet.<br/> Get cracking. You can do this :)</h4>
+                case "unfinished": return <h4>You've done them all! Sweet! Well done :)</h4>
+                default: return <h4>Looks like there are no tasks added yet. <br/>Maybe you want to add some :)</h4>
+            }
+        }
 
         return listOfTasks;
     }

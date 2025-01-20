@@ -7,18 +7,22 @@ import { ChangeEvent, useState } from "react";
 interface ITaskItemProps{
     id: number;
     content: string;
+    status: boolean;
     removeItem: (id: number) => void;
+    updateTask: (id: number, value: string, status: boolean) => void;
 }
 
 
-export function TaskItem({id, content, removeItem}: ITaskItemProps){
-    const [isDone, setIsDone] = useState<boolean>(false);
+export function TaskItem({id, content, status, removeItem, updateTask}: ITaskItemProps){
+    const [isDone, setIsDone] = useState<boolean>(status);
     const [isActive, setIsActive] = useState<boolean>(false);
     const [inputValue, setInputValue] = useState(content);
     const [tempValue, setTempValue] = useState("");
 
-    function changeProgressStatus(){
-        isDone ? setIsDone(false) : setIsDone(true);
+    function setProgressStatus(){
+        const tempStatus = isDone ? false : true;
+        setIsDone(tempStatus)
+        updateTask(id, inputValue, tempStatus);
     }
 
     function changeActiveStatus(){
@@ -35,11 +39,16 @@ export function TaskItem({id, content, removeItem}: ITaskItemProps){
         changeActiveStatus();
     }
 
+    function saveChange(){
+        updateTask(id, inputValue, isDone);
+        changeActiveStatus();
+    }
+
     return <li key={id} className={"taskItem" + " " +(isDone ? "done" : "")}>
         {!isDone && <FontAwesomeIcon className="icon" icon={faFire} />}
-        <input type="checkbox" name="checkbox" onClick={changeProgressStatus} disabled={isActive ? true : false}/>
+        <input type="checkbox" name="checkbox" onClick={setProgressStatus} disabled={isActive ? true : false} defaultChecked={isDone ? true : false}/>
         <input type="text" className={(isDone ? "done" : "")} value={inputValue} onChange={handleChange} disabled={isActive ? false : true}/>
-        {!isDone && <FontAwesomeIcon className="icon" icon={isActive ? faFloppyDisk: faPen} onClick={ () => changeActiveStatus()}/>}
+        {!isDone && <FontAwesomeIcon className="icon" icon={isActive ? faFloppyDisk: faPen} onClick={ () => isActive ? saveChange() : changeActiveStatus()}/>}
         <FontAwesomeIcon className="icon" icon={isActive ? faXmark: faTrashCan} onClick={() => { !isActive ? removeItem(id) : cancelChange()} } />
     </li>
 }
