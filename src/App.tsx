@@ -21,16 +21,16 @@ function App() {
         return findLastID + 1;
   }
 
-    /* function removeTask(key:number){
-
-    } */
+    function removeTask(id: number){
+        setTempTaskList(tempTaskList.filter((task) => task.id !== id));
+    }
 
     localStorage.setItem("savedTaskList", JSON.stringify(tempTaskList));
 
   return <>
   <h1>Todo List</h1>
     <AddTask addTask={addTask}></AddTask>
-    <ShowTaskList taskList={tempTaskList}></ShowTaskList>
+    <ShowTaskList taskList={tempTaskList} removeItem={removeTask}></ShowTaskList>
     <FilterTaskList></FilterTaskList>
     </>;
 }

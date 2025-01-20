@@ -7,10 +7,11 @@ import { useState } from "react";
 interface ITaskItemProps{
     id: number;
     content: string;
+    removeItem: (id: number) => void;
 }
 
 
-export function TaskItem({id, content}: ITaskItemProps){
+export function TaskItem({id, content, removeItem}: ITaskItemProps){
     const [isDone, setIsDone] = useState<boolean>(false);
 
     function changeStatus(){
@@ -21,7 +22,7 @@ export function TaskItem({id, content}: ITaskItemProps){
         <input type="checkbox" name="checkbox" onClick={changeStatus}/>
         <input type="text" className={(isDone ? "done" : "")} value={content} disabled/>
         <FontAwesomeIcon className="icon" icon={faFire} />
-        <FontAwesomeIcon className="icon" icon={faTrashCan} />
+        <FontAwesomeIcon className="icon" icon={faTrashCan} onClick={() => removeItem(id)} />
         <FontAwesomeIcon className="icon" icon={faPen} />
     </li>
 }
