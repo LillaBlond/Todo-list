@@ -47,7 +47,7 @@ export function TaskItem({id, content, status, removeItem, updateTask}: ITaskIte
 
     return <li key={id} className={"taskItem" + " " +(isDone ? "done" : "")}>
         {!isDone && <FontAwesomeIcon className="icon" icon={faFire} />}
-        <input type="checkbox" name="checkbox" onClick={setProgressStatus} disabled={isActive ? true : false} checked={isDone ? true : false}/>
+        <input type="checkbox" name="checkbox" onClick={setProgressStatus} disabled={isActive ? true : false} defaultChecked={isDone ? true : false}/>
         <input type="text" className={(isDone ? "done" : "")} value={inputValue} onChange={handleChange} disabled={isActive ? false : true}/>
         {!isDone && <FontAwesomeIcon className="icon" icon={isActive ? faFloppyDisk: faPen} onClick={ () => isActive ? saveChange() : changeActiveStatus()}/>}
         <FontAwesomeIcon className="icon" icon={isActive ? faXmark: faTrashCan} onClick={() => { !isActive ? removeItem(id) : cancelChange()} } />
