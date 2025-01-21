@@ -6,21 +6,21 @@ import { TaskItem } from "./TaskItem";
 
 interface IShowTaskListProps{
     taskList: Task[];
-    filter: string;
+    activeFilter: string;
     removeItem: (id: number) => void;
     updateTask: (id: number, value: string, status: boolean) => void;
 }
 
 
-export function ShowTaskList({taskList, filter, removeItem, updateTask}: IShowTaskListProps){
+export function ShowTaskList({taskList, activeFilter, removeItem, updateTask}: IShowTaskListProps){
 
     function showTaskItems(){
 
         let filteredList: Task[];
          
-        if(filter === "completed") {
+        if(activeFilter === "completed") {
                 filteredList = taskList.filter((task) => task.isDone);
-        } else if(filter === "unfinished"){
+        } else if(activeFilter === "unfinished"){
             filteredList =  taskList.filter((task) => !task.isDone);
         } else{
                 filteredList =  taskList;
@@ -31,7 +31,7 @@ export function ShowTaskList({taskList, filter, removeItem, updateTask}: IShowTa
         console.log(listOfTasks);
 
         if(listOfTasks.length === 0){
-            switch(filter){
+            switch(activeFilter){
                 case "completed": return <h4>You haven't completed any tasks yet.<br/> Get cracking. You can do this :)</h4>
                 case "unfinished": return <h4>You've done them all! I think you deserve a long break :)</h4>
                 default: return <h4>Looks like there are no tasks added yet. <br/>Go ahead, add one :)</h4>

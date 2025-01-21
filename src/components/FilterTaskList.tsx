@@ -10,16 +10,16 @@ interface IFilterTaskListProps {
         completed: number;
         progress: number;
     }
-    filter: string;
+    activeFilter: string;
 }
 
-export function FilterTaskList({addFilter, progress, filter}: IFilterTaskListProps){
+export function FilterTaskList({addFilter, progress, activeFilter}: IFilterTaskListProps){
 
 
     return <section id="filter">
-        <button id="completed-btn" type="button" className={(filter === "completed") ? "active" : "inactive"} onClick={() => addFilter("completed")}>Completed</button>
-        <button id="unfinished-btn" type="button" className={(filter === "unfinished") ? "active" : "inactive"} onClick={() => addFilter("unfinished")}>Unfinished</button>
-        <button id="all-btn" type="button" className={(filter === "all") ? "active" : "inactive"} onClick={() => addFilter("all")}>All</button>
+        <button id="completed-btn" type="button" className={(activeFilter === "completed") ? "active" : "inactive"} onClick={() => addFilter("completed")}>Completed</button>
+        <button id="unfinished-btn" type="button" className={(activeFilter === "unfinished") ? "active" : "inactive"} onClick={() => addFilter("unfinished")}>Unfinished</button>
+        <button id="all-btn" type="button" className={(activeFilter === "all") ? "active" : "inactive"} onClick={() => addFilter("all")}>All</button>
         <div id="progress">{progress.completed + "/" + progress.total + " completed"}
         </div>
         <div>

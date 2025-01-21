@@ -12,7 +12,7 @@ export function TodoList(){
     const everyDayItems = JSON.stringify([new Task(1, "Wake up", false), new Task(2, "Make coffe", false), new Task(3, "Open eyes", false), new Task(4, "Start day", false)]);
       const savedTaskList = JSON.parse(localStorage.getItem("savedTaskList")|| everyDayItems);
       const [tempTaskList, setTempTaskList] = useState<Task[]>(savedTaskList);
-      const [filter, setFilter] = useState<string>("all");
+      const [activeFilter, setActiveFilter] = useState<string>("all");
       const progress = calculateProgress();
 
 
@@ -50,7 +50,7 @@ export function TodoList(){
       }
     
       function addFilter(filter: string){
-          setFilter(filter);
+          setActiveFilter(filter);
       }
     
       function updateTask(id: number, value: string, status: boolean){
@@ -63,7 +63,7 @@ export function TodoList(){
       return <div id="todo-list-wrapper">
         <h1>Todo List</h1>
         <AddTask addTask={addTask}></AddTask>
-        <ShowTaskList taskList={tempTaskList} removeItem={removeTask} updateTask={updateTask} filter={filter}></ShowTaskList>
-        <FilterTaskList filter={filter} progress={progress} addFilter={addFilter}></FilterTaskList>
+        <ShowTaskList taskList={tempTaskList} removeItem={removeTask} updateTask={updateTask} activeFilter={activeFilter}></ShowTaskList>
+        <FilterTaskList activeFilter={activeFilter} progress={progress} addFilter={addFilter}></FilterTaskList>
         </div>
 }
