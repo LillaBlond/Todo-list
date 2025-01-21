@@ -2,8 +2,6 @@
 #filter button,
 #filter button:focus
 {
-    background-color: var(--lightBlue);
-    color: var(--slategrey);
     font-weight: bold;
     padding: 10px;
     font-size: 14px;
@@ -12,6 +10,15 @@
     box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.25), inset 0 0 4px 2px rgba(0, 0, 0, 0.25);
 }
 
+.inactive{
+    background-color: var(--lightBlue);
+    color: var(--slategrey);
+}
+
+.active{
+    background-color: var(--darkBlue);
+    color: var(--lightBlue);
+}
 
 #filter button:hover
 {
@@ -38,5 +45,12 @@
 
 #filter{
     display: flex;
+    align-items: center;
     gap: 10px;
+}
+
+.progress-icon{
+    color: var(--slategrey);
+    font-size: 30px;
+    padding-right: 10px;
 }
