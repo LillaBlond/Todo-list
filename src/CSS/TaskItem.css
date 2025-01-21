@@ -2,7 +2,7 @@
 
 
 .taskItem{
-    width: 95%;
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -14,13 +14,13 @@
 }
 
 .taskItem .icon{
-    color: grey;
+    color: var(--darkBlue);
     font-size: 20px;
 }
 
 .taskItem .icon:hover{
     cursor: pointer;
-    color: var(--mediumBlue);
+    color: var(--blue);
     font-size: 20px;
 }
 
@@ -33,38 +33,41 @@
 
 .taskItem input[type=text]{
   width: 100%;
-  background-color: white;
-  color: var(--slategrey);
+  background-color: var(--lightGrey);
+  color: var(--darkBlue);
+  font-weight: bold;
   font-size: 16px;
   padding: 5px;
+  border: none;
+  overflow: scroll;
 }
 
 .taskItem input[type=text].done{
   text-decoration: line-through;
   font-weight: bold;
 }
-.taskItem input[type=checkbox]{
-    margin: 5px;
-    width: 10px;
-    height: 10px;
+.taskItem input[type=text].active{
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.25);
 }
+
 .taskItem input[type=checkbox]{
     -webkit-appearance: none; /* For Safari */
     -moz-appearance: none; /* For older Firefox */
     appearance: none;
     position: relative;
-    width: 15px;
-    height: 15px;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
     border: 1px solid grey;
     border-radius: 3px;
-    margin-right: 5px;
+    /* margin-right: 5px; */
     box-shadow: 0 2px 4px 0 inset rgba(0,0,0,0.25); 
-    background-color: var(--soft-white);
+    background-color: white;
   }
 
   .taskItem input[type="checkbox"]:hover {
-    background-color: var(--grey-grad2);
+    background-color: var(--lightBlue);
   }
 
   /* Checked state */
@@ -82,12 +85,25 @@
     top: -10px;
     left: 0px;
     width: 10px;
-    height: 20px;
+    height: 30px;
     border: solid var(--darkBlue);
-    border-width: 0 4px 4px 0;
+    border-width: 0 5px 5px 0;
     transform: rotate(35deg);
   }
 
   .taskItem.done{
     opacity: 0.4;
+  }
+
+  .task-item-error{
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    top: 40px;
+    left: 0px;
+    z-index: 10;
+    color: var(--errorRed);
+    font-weight: bold;
+    padding: 5px;
+    background-color: var(--lightGrey);
   }

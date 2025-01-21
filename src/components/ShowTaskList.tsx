@@ -33,8 +33,8 @@ export function ShowTaskList({taskList, filter, removeItem, updateTask}: IShowTa
         if(listOfTasks.length === 0){
             switch(filter){
                 case "completed": return <h4>You haven't completed any tasks yet.<br/> Get cracking. You can do this :)</h4>
-                case "unfinished": return <h4>You've done them all! Sweet! Well done :)</h4>
-                default: return <h4>Looks like there are no tasks added yet. <br/>Maybe you want to add some :)</h4>
+                case "unfinished": return <h4>You've done them all! I think you deserve a long break :)</h4>
+                default: return <h4>Looks like there are no tasks added yet. <br/>Go ahead, add one :)</h4>
             }
         }
 

@@ -1,22 +1,63 @@
 #addTask-wrapper{
     position: relative;
+    width: 100%;
+}
+
+h1{
+    text-shadow: var(--boxShadow);
+    margin-bottom: 40px;
+    width: 100%;
 }
 
 #addTask-wrapper input{
-    min-width: 400px;
+    width: 100%;
     background-color: white;
     color: var(--charcoal);
-    padding: 15px;
+    padding: 15px 90px 15px 15px;
     font-size: 16px;
-    border-radius: 10px 0 0 10px;
+    border-radius: 10px;
     border: none;
-    box-shadow: var(--boxShadow);
+    box-shadow: var(--boxShadow), inset 0 0 4px 2px rgba(0, 0, 0, 0.25);
+}
+
+#addTask-wrapper input:focus-visible{
+    box-shadow: 0 0 4px 1px var(--lightBlue), inset 0 2px 4px 1px rgba(0,0,0,0.60);
+    background-color: #ebf7d9;
+    border: none;
+    outline:1px solid var(--lightBlue);
+    color: var(--charcoal);
+    font-size: 16px;
 }
 
 #addTask-wrapper button{
+    position: absolute;
+    right: 0px;
     border-radius: 0 10px 10px 0;
-    padding: 12px 20px;
+    border: none;
+    padding: 14px 20px;
+    font-size: 16px;
     background-color: var(--slategrey);
     color: white;
+    box-shadow: inset 0 0 4px 2px rgba(0, 0, 0, 0.25);
+    
+}
 
+#addTask-wrapper button:focus,
+#addTask-wrapper button:focus-visible{
+    outline: none;
+}
+
+#addTask-wrapper button:hover{
+    background-color: var(--lightBlue);
+}
+
+#addTask-wrapper button:active{
+    background-color: var(--darkBlue);
+}
+
+#error-message{
+    color:var(--errorRed);
+    font-weight: bold;
+    font-size: 16px;
+    margin: 10px 0;
 }
