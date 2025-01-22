@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 :root{
     --background: linear-gradient(#678B92, white);
@@ -8,12 +9,11 @@
     --slategrey: #4F656D;
     --lightBlue: #A8BBC2;
     --mediumBlue: #70919d;
+    --blue: #66a3b1;
     --darkBlue: #415f69;
+    --greyBlue: #495e6e;
     --charcoal: #151515;
+    --errorRed: #e80000;
     --boxShadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-h1{
-    text-shadow: var(--boxShadow);
-    margin-bottom: 40px;
-}

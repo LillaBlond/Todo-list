@@ -1,25 +1,32 @@
 import "../css/Global.css"
 import "../css/FilterTaskList.css";
-import { Task } from "../models/Task";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPersonHiking, faTrophy, faThumbsUp} from "@fortawesome/free-solid-svg-icons"
 
 interface IFilterTaskListProps {
     addFilter: (filter: string) => void;
-    taskList: Task[];
+    progress: {
+        total: number;
+        completed: number;
+        progress: number;
+    }
+    activeFilter: string;
 }
 
-export function FilterTaskList({addFilter, taskList}: IFilterTaskListProps){
+export function FilterTaskList({addFilter, progress, activeFilter}: IFilterTaskListProps){
 
-    const data ={
-        total: taskList.length,
-        completed: taskList.filter((task)=> task.isDone).length
-
-    }
 
     return <section id="filter">
-        <button type="button" onClick={() => addFilter("completed")}>Completed</button>
-        <button type="button" onClick={() => addFilter("unfinished")}>Unfinished</button>
-        <button type="button" onClick={() => addFilter("all")}>All</button>
-        <div id="progress">{data.completed + "/" + data.total + " completed"}
+        <button id="completed-btn" type="button" className={(activeFilter === "completed") ? "active" : "inactive"} onClick={() => addFilter("completed")}>Completed</button>
+        <button id="unfinished-btn" type="button" className={(activeFilter === "unfinished") ? "active" : "inactive"} onClick={() => addFilter("unfinished")}>Unfinished</button>
+        <button id="all-btn" type="button" className={(activeFilter === "all") ? "active" : "inactive"} onClick={() => addFilter("all")}>All</button>
+        <div id="progress">{progress.completed + "/" + progress.total + " completed"}
+        </div>
+        <div>
+        {progress.progress === 1 && <FontAwesomeIcon className="progress-icon" icon={faPersonHiking} />}
+        {progress.progress === 2 &&  <FontAwesomeIcon className="progress-icon" icon={faThumbsUp} />}
+        {progress.progress === 3 &&  <FontAwesomeIcon className="progress-icon" icon={faTrophy} />}
+
         </div>
     </section>
 }
