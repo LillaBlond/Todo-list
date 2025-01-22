@@ -4,6 +4,7 @@ export class Task {
     constructor(
         public id: number, 
         public task: string,
-        public isDone: boolean
+        public isDone: boolean,
+        public isPriority: boolean
     ){}
 }
