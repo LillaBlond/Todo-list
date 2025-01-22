@@ -8,11 +8,13 @@ interface ITaskItemProps{
     id: number;
     content: string;
     status: boolean;
+    isPriority: boolean;
     removeTask: (id: number) => void;
-    updateTask: (id: number, value: string, status: boolean) => void;
+    updateTask: (id: number, value: string, status: boolean, isPriority: boolean) => void;
+    updatePriority: (id: number) => void;
 }
 
-export function TaskItem({id, content, status, removeTask, updateTask}: ITaskItemProps){
+export function TaskItem({id, content, status, isPriority, removeTask, updateTask, updatePriority}: ITaskItemProps){
     const [isDone, setIsDone] = useState<boolean>(status);
     const [isActive, setIsActive] = useState<boolean>(false);
     const [inputValue, setInputValue] = useState(content);
@@ -24,7 +26,7 @@ export function TaskItem({id, content, status, removeTask, updateTask}: ITaskIte
     function setProgressStatus(){
         const tempStatus = isDone ? false : true;
         setIsDone(tempStatus)
-        updateTask(id, inputValue, tempStatus);
+        updateTask(id, inputValue, tempStatus, false);
     }
 
     function changeActiveStatus(){
@@ -56,7 +58,7 @@ export function TaskItem({id, content, status, removeTask, updateTask}: ITaskIte
     
     function saveChange(){
         if(!isEmpty){
-            updateTask(id, inputValue, isDone);
+            updateTask(id, inputValue, isDone, isPriority);
             changeActiveStatus();
             setIsMaxLength(false);
             setShowError(false);
@@ -65,13 +67,13 @@ export function TaskItem({id, content, status, removeTask, updateTask}: ITaskIte
         }
     }
 
-    return <li key={id} className={"taskItem" +(isDone ? " done" : "")}>
-        {!isDone && !isActive && <FontAwesomeIcon className="icon" icon={faFire} />}
+    return <li key={id} className={"taskItem" +(isDone ? " done" : "") + (isPriority ? " priority": "")}>
+        {!isDone && !isActive && <FontAwesomeIcon className={"icon" + (isPriority ? " priority" : "")} icon={faFire} onClick={() => updatePriority(id)}/>}
         {!isActive && <input type="checkbox" name="checkbox" onClick={setProgressStatus} disabled={isActive ? true : false} defaultChecked={isDone ? true : false}/>}
-        {isMaxLength && <p className="task-item-error">Max 60 characters</p>}
-        {showError && <p className="task-item-error">A task can not be empty. Just remove it instead.</p>}
-        <input type="text" className={(isDone ? "done" : "") + (isActive && " active")} value={inputValue} onChange={handleChange} disabled={isActive ? false : true} maxLength={60}/>
-        {!isDone && <FontAwesomeIcon className="icon" icon={isActive ? faFloppyDisk: faPen} onClick={ () => isActive ? saveChange() : changeActiveStatus()}/>}
-        <FontAwesomeIcon className="icon" icon={isActive ? faXmark: faTrashCan} onClick={() => { !isActive ? removeTask(id) : cancelChange()} } />
+        {isMaxLength && <p className={"task-item-error" + (isPriority ? " priority" : "")}>Max 60 characters</p>}
+        {showError && <p className={"task-item-error" + (isPriority ? " priority" : "")}>A task can not be empty. Just remove it instead.</p>}
+        <input type="text" className={(isDone ? "done" : "") + (isActive ? " active" : "") +(isPriority ? " priority" : "")} value={inputValue} onChange={handleChange} disabled={isActive ? false : true} maxLength={60}/>
+        {!isDone && <FontAwesomeIcon className={"icon" +(isPriority ? " priority" : "")} icon={(isActive ? faFloppyDisk: faPen) } onClick={ () => isActive ? saveChange() : changeActiveStatus()}/>}
+        <FontAwesomeIcon className={"icon" +(isPriority ? " priority" : "")} icon={isActive ? faXmark: faTrashCan} onClick={() => { !isActive ? removeTask(id) : cancelChange()} } />
     </li>
 }

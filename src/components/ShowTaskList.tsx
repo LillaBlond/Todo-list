@@ -8,11 +8,12 @@ interface IShowTaskListProps{
     taskList: Task[];
     activeFilter: string;
     removeTask: (id: number) => void;
-    updateTask: (id: number, value: string, status: boolean) => void;
+    updateTask: (id: number, value: string, status: boolean, isPriority: boolean) => void;
+    updatePriority: (id: number) => void;
 }
 
 
-export function ShowTaskList({taskList, activeFilter, removeTask, updateTask}: IShowTaskListProps){
+export function ShowTaskList({taskList, activeFilter, removeTask, updateTask, updatePriority}: IShowTaskListProps){
 
     function showTaskItems(){
 
@@ -27,7 +28,7 @@ export function ShowTaskList({taskList, activeFilter, removeTask, updateTask}: I
         }
 
         const listOfTasks = filteredList.map((task) => {
-            return <TaskItem key={task.id} id={task.id} content={task.task} status={task.isDone} removeTask={removeTask} updateTask={updateTask}></TaskItem>
+            return <TaskItem key={task.id} id={task.id} content={task.task} status={task.isDone} isPriority={task.isPriority} removeTask={removeTask} updateTask={updateTask} updatePriority={updatePriority}></TaskItem>
         });
 
         if(listOfTasks.length === 0){

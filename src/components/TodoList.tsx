@@ -9,7 +9,7 @@ import { Task } from "../models/Task";
 
 export function TodoList(){
 
-    const everyDayItems = JSON.stringify([new Task(1, "Wake up", false), new Task(2, "Make coffe", false), new Task(3, "Open eyes", false), new Task(4, "Start day", false)]);
+    const everyDayItems = JSON.stringify([new Task(1, "Wake up", false, false), new Task(2, "Make coffe", false, false), new Task(3, "Open eyes", false, false), new Task(4, "Start day", false, false)]);
       const savedTaskList = JSON.parse(localStorage.getItem("savedTaskList")|| everyDayItems);
       const [tempTaskList, setTempTaskList] = useState<Task[]>(savedTaskList);
       const [activeFilter, setActiveFilter] = useState<string>("all");
@@ -32,7 +32,7 @@ export function TodoList(){
       }      
        
       function addTask(task: string){
-          setTempTaskList([...tempTaskList, new Task(getNewId(), task, false)]);
+          setTempTaskList([...tempTaskList, new Task(getNewId(), task, false, false)]);
         }
     
       function getNewId(){
@@ -51,9 +51,35 @@ export function TodoList(){
           setActiveFilter(filter);
       }
     
-      function updateTask(id: number, value: string, status: boolean){
+      function updateTask(id: number, value: string, status: boolean, isPriority: boolean){
         setTempTaskList(tempTaskList.map((task)=> {
-          return task.id === id ? new Task(id, value, status) : task}))
+          return task.id === id ? new Task(id, value, status, isPriority) : task}))
+      }
+
+      function updatePriority(id: number){
+
+        const isCurrentPriority = tempTaskList.filter((task) => task.id === id)[0].isPriority;
+        let updatedList: Task[];
+
+        if(isCurrentPriority){
+
+          updatedList = tempTaskList.map((task) => task.isPriority ? {id: task.id, task: task.task, isDone: task.isDone, isPriority: false} : task);
+          console.log("test1")
+        } else {
+          
+          const cleanList = tempTaskList.map((task) => task.isPriority ? {id: task.id, task: task.task, isDone: task.isDone, isPriority: false} : task);
+          const updatedPriority = cleanList.map((task) => task.id === id ? {id: task.id, task: task.task, isDone: task.isDone, isPriority: true} : task);
+          
+          const priorityTask = updatedPriority.filter((task) => task.isPriority)
+          const nonPriorotyTasks = updatedPriority.filter((task) => !task.isPriority)
+          /*  nonPriorotyTasks.forEach((task) => priorityTask.push(task)); */
+          
+          updatedList = priorityTask;
+          nonPriorotyTasks.forEach((task) => updatedList.push(task));
+          
+        }
+        setTempTaskList(updatedList);
+
       }
     
       localStorage.setItem("savedTaskList", JSON.stringify(tempTaskList));
@@ -61,7 +87,7 @@ export function TodoList(){
       return <div id="todo-list-wrapper">
         <h1>Todo List</h1>
         <AddTask addTask={addTask}></AddTask>
-        <ShowTaskList taskList={tempTaskList} removeTask={removeTask} updateTask={updateTask} activeFilter={activeFilter}></ShowTaskList>
+        <ShowTaskList updatePriority={updatePriority} taskList={tempTaskList} removeTask={removeTask} updateTask={updateTask} activeFilter={activeFilter}></ShowTaskList>
         <FilterTaskList activeFilter={activeFilter} progress={progress} setFilter={setFilter}></FilterTaskList>
         </div>
 }
