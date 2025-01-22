@@ -7,12 +7,12 @@ import { TaskItem } from "./TaskItem";
 interface IShowTaskListProps{
     taskList: Task[];
     activeFilter: string;
-    removeItem: (id: number) => void;
+    removeTask: (id: number) => void;
     updateTask: (id: number, value: string, status: boolean) => void;
 }
 
 
-export function ShowTaskList({taskList, activeFilter, removeItem, updateTask}: IShowTaskListProps){
+export function ShowTaskList({taskList, activeFilter, removeTask, updateTask}: IShowTaskListProps){
 
     function showTaskItems(){
 
@@ -26,14 +26,14 @@ export function ShowTaskList({taskList, activeFilter, removeItem, updateTask}: I
                 filteredList =  taskList;
         }
 
-        const listOfTasks = filteredList.map((task) => <TaskItem key={task.id} id={task.id} content={task.task} status={task.isDone} removeItem={removeItem} updateTask={updateTask}></TaskItem>
-        );
-        console.log(listOfTasks);
+        const listOfTasks = filteredList.map((task) => {
+            return <TaskItem key={task.id} id={task.id} content={task.task} status={task.isDone} removeTask={removeTask} updateTask={updateTask}></TaskItem>
+        });
 
         if(listOfTasks.length === 0){
             switch(activeFilter){
-                case "completed": return <h4>You haven't completed any tasks yet.<br/> Get cracking. You can do this :)</h4>
-                case "unfinished": return <h4>You've done them all! I think you deserve a long break :)</h4>
+                case "completed": return <h4>You haven't completed any tasks yet.<br/> Get cracking. You can do this!</h4>
+                case "unfinished": return <h4>You've done them all! Well done!</h4>
                 default: return <h4>Looks like there are no tasks added yet. <br/>Go ahead, add one :)</h4>
             }
         }

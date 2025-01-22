@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPersonHiking, faTrophy, faThumbsUp} from "@fortawesome/free-solid-svg-icons"
 
 interface IFilterTaskListProps {
-    addFilter: (filter: string) => void;
+    setFilter: (filter: string) => void;
     progress: {
         total: number;
         completed: number;
@@ -13,20 +13,17 @@ interface IFilterTaskListProps {
     activeFilter: string;
 }
 
-export function FilterTaskList({addFilter, progress, activeFilter}: IFilterTaskListProps){
-
+export function FilterTaskList({setFilter, progress, activeFilter}: IFilterTaskListProps){
 
     return <section id="filter">
-        <button id="completed-btn" type="button" className={(activeFilter === "completed") ? "active" : "inactive"} onClick={() => addFilter("completed")}>Completed</button>
-        <button id="unfinished-btn" type="button" className={(activeFilter === "unfinished") ? "active" : "inactive"} onClick={() => addFilter("unfinished")}>Unfinished</button>
-        <button id="all-btn" type="button" className={(activeFilter === "all") ? "active" : "inactive"} onClick={() => addFilter("all")}>All</button>
-        <div id="progress">{progress.completed + "/" + progress.total + " completed"}
-        </div>
-        <div>
-        {progress.progress === 1 && <FontAwesomeIcon className="progress-icon" icon={faPersonHiking} />}
-        {progress.progress === 2 &&  <FontAwesomeIcon className="progress-icon" icon={faThumbsUp} />}
-        {progress.progress === 3 &&  <FontAwesomeIcon className="progress-icon" icon={faTrophy} />}
-
-        </div>
-    </section>
+                <button id="completed-btn" type="button" className={(activeFilter === "completed") ? "active" : "inactive"} onClick={() => setFilter("completed")}>Completed</button>
+                <button id="unfinished-btn" type="button" className={(activeFilter === "unfinished") ? "active" : "inactive"} onClick={() => setFilter("unfinished")}>Unfinished</button>
+                <button id="all-btn" type="button" className={(activeFilter === "all") ? "active" : "inactive"} onClick={() => setFilter("all")}>All</button>
+                <div id="progress">{progress.completed + "/" + progress.total + " completed"}</div>
+                <div>
+                    {progress.progress === 1 && <FontAwesomeIcon className="progress-icon" icon={faPersonHiking} />}
+                    {progress.progress === 2 &&  <FontAwesomeIcon className="progress-icon" icon={faThumbsUp} />}
+                    {progress.progress === 3 &&  <FontAwesomeIcon className="progress-icon" icon={faTrophy} />}
+                </div>
+            </section>
 }

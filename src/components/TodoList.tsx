@@ -19,7 +19,7 @@ export function TodoList(){
       function calculateProgress(){
         const totalTasks = tempTaskList.length;
         const completedTasks = tempTaskList.filter((task:Task)=> task.isDone).length; 
-        const progress = Math.round((tempTaskList.filter((task:Task)=> task.isDone).length / (savedTaskList.length) * 100));
+        const progress = (completedTasks / totalTasks) * 100;
         let progressLevel: number;
         
         if(progress < 30){
@@ -29,19 +29,17 @@ export function TodoList(){
         } else progressLevel = 3
 
         return {total: totalTasks, completed: completedTasks, progress: progressLevel}
-      }
-
-      
+      }      
        
       function addTask(task: string){
           setTempTaskList([...tempTaskList, new Task(getNewId(), task, false)]);
         }
     
       function getNewId(){
-    
-              const idArray = tempTaskList.map((task) => task.id)
-              const lastTaskId = (idArray.length !== 0) ? Math.max(...idArray) : 0;
-    
+
+              const idsArray = tempTaskList.map((task) => task.id)
+              const lastTaskId = (idsArray.length !== 0) ? Math.max(...idsArray) : 0;
+
             return lastTaskId + 1;
       }
     
@@ -49,13 +47,13 @@ export function TodoList(){
           setTempTaskList(tempTaskList.filter((task) => task.id !== id));
       }
     
-      function addFilter(filter: string){
+      function setFilter(filter: string){
           setActiveFilter(filter);
       }
     
       function updateTask(id: number, value: string, status: boolean){
-          setTempTaskList(tempTaskList.map((task)=> {
-            return task.id === id ? new Task(id, value, status) : task}))
+        setTempTaskList(tempTaskList.map((task)=> {
+          return task.id === id ? new Task(id, value, status) : task}))
       }
     
       localStorage.setItem("savedTaskList", JSON.stringify(tempTaskList));
@@ -63,7 +61,7 @@ export function TodoList(){
       return <div id="todo-list-wrapper">
         <h1>Todo List</h1>
         <AddTask addTask={addTask}></AddTask>
-        <ShowTaskList taskList={tempTaskList} removeItem={removeTask} updateTask={updateTask} activeFilter={activeFilter}></ShowTaskList>
-        <FilterTaskList activeFilter={activeFilter} progress={progress} addFilter={addFilter}></FilterTaskList>
+        <ShowTaskList taskList={tempTaskList} removeTask={removeTask} updateTask={updateTask} activeFilter={activeFilter}></ShowTaskList>
+        <FilterTaskList activeFilter={activeFilter} progress={progress} setFilter={setFilter}></FilterTaskList>
         </div>
 }
