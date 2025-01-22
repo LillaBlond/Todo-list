@@ -36,7 +36,7 @@ export function AddTask(props: IAddTaskProps){
     return <form id="addTask-wrapper">
         <input type="text" name="addTask" onChange={handleChange} value={inputValue} placeholder="What needs to be done?" maxLength={60}/>
         <button type="submit" onClick={handleSubmit}>Add</button>
-        {isMaxLength && <p id="error-message">A task can max be 60 characters. <br />Try breaking your task down into smaller tasks</p>}
-        {isEmpty && <p id="error-message">A task can not be empty. Why would you add an empty task?</p>}
+        {isMaxLength && <p className="error-message">A task can max be 60 characters. <br />Try breaking your task down into smaller tasks</p>}
+        {isEmpty && <p className="error-message">A task can not be empty. Why would you add an empty task?</p>}
     </form>
 }

@@ -55,7 +55,7 @@ h1{
     background-color: var(--darkBlue);
 }
 
-#error-message{
+.error-message{
     color:var(--errorRed);
     font-weight: bold;
     font-size: 16px;

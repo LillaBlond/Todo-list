@@ -8,11 +8,11 @@ interface ITaskItemProps{
     id: number;
     content: string;
     status: boolean;
-    removeItem: (id: number) => void;
+    removeTask: (id: number) => void;
     updateTask: (id: number, value: string, status: boolean) => void;
 }
 
-export function TaskItem({id, content, status, removeItem, updateTask}: ITaskItemProps){
+export function TaskItem({id, content, status, removeTask, updateTask}: ITaskItemProps){
     const [isDone, setIsDone] = useState<boolean>(status);
     const [isActive, setIsActive] = useState<boolean>(false);
     const [inputValue, setInputValue] = useState(content);
@@ -33,7 +33,6 @@ export function TaskItem({id, content, status, removeItem, updateTask}: ITaskIte
     }
 
     function handleChange(e: ChangeEvent<HTMLInputElement>){
-       console.log(e.target.value.length)
         if(e.target.value.length === e.target.maxLength){
             setIsMaxLength(true);
         } else if(e.target.value.length === 0){
@@ -66,13 +65,13 @@ export function TaskItem({id, content, status, removeItem, updateTask}: ITaskIte
         }
     }
 
-    return <li key={id} className={"taskItem" + " " +(isDone ? "done" : "")}>
-        {!isDone && <FontAwesomeIcon className="icon" icon={faFire} />}
-        <input type="checkbox" name="checkbox" onClick={setProgressStatus} disabled={isActive ? true : false} defaultChecked={isDone ? true : false}/>
+    return <li key={id} className={"taskItem" +(isDone ? " done" : "")}>
+        {!isDone && !isActive && <FontAwesomeIcon className="icon" icon={faFire} />}
+        {!isActive && <input type="checkbox" name="checkbox" onClick={setProgressStatus} disabled={isActive ? true : false} defaultChecked={isDone ? true : false}/>}
         {isMaxLength && <p className="task-item-error">Max 60 characters</p>}
         {showError && <p className="task-item-error">A task can not be empty. Just remove it instead.</p>}
-        <input type="text" className={(isDone ? "done" : "") + " " +(isActive && "active")} value={inputValue} onChange={handleChange} disabled={isActive ? false : true} maxLength={60}/>
+        <input type="text" className={(isDone ? "done" : "") + (isActive && " active")} value={inputValue} onChange={handleChange} disabled={isActive ? false : true} maxLength={60}/>
         {!isDone && <FontAwesomeIcon className="icon" icon={isActive ? faFloppyDisk: faPen} onClick={ () => isActive ? saveChange() : changeActiveStatus()}/>}
-        <FontAwesomeIcon className="icon" icon={isActive ? faXmark: faTrashCan} onClick={() => { !isActive ? removeItem(id) : cancelChange()} } />
+        <FontAwesomeIcon className="icon" icon={isActive ? faXmark: faTrashCan} onClick={() => { !isActive ? removeTask(id) : cancelChange()} } />
     </li>
 }
