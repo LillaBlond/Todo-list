@@ -1,26 +1,17 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/5rYHWBoe)
 # Todos
 
-En inlämningsuppgift för FSU23D. I denna uppgift skall ni alltså bygga en todo-lista i react. Ni har fått detta projekt som mall så att alla har någonting att utgå ifrån. Men, ingenting mer än själva projektet har gjorts. Nu skall ni, genom att använda alla koncept vi har pratat om hittills i kursen, skapa en todo-lista.
+En inlämningsuppgift för Fullstackutbildningen Systemutveckling Ramverk på medieinstitutet 2025. 
 
-## Krav för G
+Uppgiften var att bygga en todo-lista i react. Med nedanstående krav:
 
-- Skapa en hårdkodad lista med egna todos (ni kan välja vilka todos som helst)
+- Skapa en hårdkodad lista med egna todos
 - Presentera listan på skärmen med kontroll, kanske med hjälp av en ul/li
 - Ni skall kunna ta bort en todo ur listan
 - Ni behöver använda minst en komponent
 - Bra struktur på er kod. Detta betyder självförklarande variabelnamn och funktionsnamn samt inga kommentarer.
-
-## Krav för VG
-
-- Samtliga punkter för G
 - Använda localStorage för att spara er lista. Jag vill inte att allting börjar om från början varje siduppdatering :)
 - Ni använder er av minst tre komponenter
 - Ni använder er av Lifting State Up
 - Ni skall kunna skriva in egna todos via ett formulär
 - Ni skall visa även klara händelser och göra så att de kan bli "oklara" igen
 - Ni skall kunna sortera er lista på något sätt, hur och på vad är upp till er
-
-## Förslag
-
-Mitt förslag är att ni funderar över vilket betyg ni vill uppnå och börjar planera för de komponenter som behövs för just det. Fokusera på funktionalitet framför utseende. Såklart att ni får styla hur mycket ni vill, men det är funktionalitet jag kommer att bedöma i denna uppgift. 
